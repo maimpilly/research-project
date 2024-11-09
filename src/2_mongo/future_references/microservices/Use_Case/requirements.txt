@@ -1,0 +1,6 @@
+cassandra-driver
+paramiko
+NumPy
+pymongo
+boto3
+pandas

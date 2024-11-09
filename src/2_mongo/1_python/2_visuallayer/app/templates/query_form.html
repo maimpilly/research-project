@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Form</title>
+    <style>
+        select#query {
+        width: 500px;
+        font-size: 16px;
+        }
+        /* Add CSS for the background image container */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('logo-uni-stuttgart.jpg'); /* Relative path to your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(5px); /* Apply a blur effect to the entire container */
+            z-index: -1; /* Position it behind other content */
+        }
+
+        /* Style the form and content in the foreground */
+        body {
+            font-family: Arial, sans-serif; /* Choose a readable font */
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1; /* Position it in front of the background container */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container"></div>
+    <h1>Database Query Interface</h1>
+    <form action="/query" method="post">
+        <label for="query">Select the condition to extract data:</label><br>
+        <select name="query" id="query">
+            <option value="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/owl/owlapi/turtle#>
+SELECT ?collectionName ?id ?condition ?gateLength ?voltageGateSource ?voltageDrainSource
+WHERE {
+  ?data rdf:type :data_in_db .
+  ?data :hasCondition ?condition .
+  ?data :hasCollectionName ?collectionName .
+  ?data :hasDataID ?id .
+  ?data :hasGateLength ?gateLength .
+  ?data :hasVoltageGateSource ?voltageGateSource .
+  ?data :hasVoltageDrainSource ?voltageDrainSource .
+  FILTER (?condition = 'intact')
+}"> All files where condition is intact</option>
+            <option value="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/owl/owlapi/turtle#>
+
+SELECT ?collectionName ?id ?condition ?gateLength ?voltageGateSource ?voltageDrainSource
+WHERE {
+  ?data rdf:type :data_in_db .
+  ?data :hasCondition ?condition .
+  ?data :hasCollectionName ?collectionName .
+  ?data :hasDataID ?id .
+  ?data :hasGateLength ?gateLength .
+  ?data :hasVoltageGateSource ?voltageGateSource .
+  ?data :hasVoltageDrainSource ?voltageDrainSource .
+  FILTER (?condition = 'defect')
+}">All files with condition is defect</option>
+        </select><br><br><br>
+        <label for="destination">Destination Path:</label><br>
+        <input type="text" id="destination" name="destination"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="results">
+        <!-- Display SPARQL query results here -->
+    </div>
+</body>
+</html>

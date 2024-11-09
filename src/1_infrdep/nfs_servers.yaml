@@ -1,0 +1,73 @@
+---
+- name: Setup NFS-Servers
+  hosts: activ_nodes
+  become: yes
+  vars: 
+    options: "10.10.10.0/24(rw,sync,root_squash)"
+    share: "./IAS_Project/IAS_NFS_Shared"
+
+  tasks:
+
+
+    - name: Create a mountable directory if it does not exist
+      file:
+        path: "./IAS_Project/IAS_NFS_Shared/PNode"
+        state: directory
+        owner: "{{ansible_user}}"
+        group: "{{ansible_user}}"
+        mode: '0777'
+
+    - name: install nfs-utils
+      apt: name=nfs-kernel-server state=latest
+
+    - name: share in IAS_NFS_Shared
+      ansible.builtin.lineinfile:
+        path: "/etc/exports"
+        state: present
+        line: "{{share}} {{options}}"
+      notify: restart NFS server
+    
+    - name: export share
+      ansible.builtin.command: "exportfs -rav"
+
+  handlers:
+    - name: restart NFS server
+      ansible.builtin.service:
+        name: nfs-server
+        state: restarted
+        enabled: true
+
+
+
+    - name: NFS apply change configrue
+      shell: systemctl reload nfs;exportfs -a
+
+
+
+- name: Setup NFS-Clienst (Passiv_Nodes)
+  hosts: passiv_nodes
+  become: yes
+  tasks:
+    - name: install nfs-common
+      apt: name=nfs-common state=latest
+    
+    - name: install
+      apt: name=nfs4-acl-tools state=present
+
+
+    - name: Create a mountable directory if it does not exist
+      file:
+        path: "./IAS_Project/IAS_NFS_Shared_{{inventory_hostname}}"
+        state: directory
+        owner: "{{ansible_user}}"
+        group: "{{ansible_user}}"
+        mode: '0777'
+
+    - name: Mount NFS_Volume
+      ansible.posix.mount:
+        src: "10.10.10.3:/home/{{ansible_user}}/IAS_Project/IAS_NFS_Shared/{{inventory_hostname}}" #add active node ip address
+        path: "/home/{{ansible_user}}/IAS_Project/IAS_NFS_Shared_{{inventory_hostname}}"
+        opts: rw,sync,hard
+        boot: false
+        state: mounted
+        fstype: nfs

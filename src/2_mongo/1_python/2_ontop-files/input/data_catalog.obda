@@ -1,0 +1,31 @@
+[PrefixDeclaration]
+:		http://www.semanticweb.org/owl/owlapi/turtle#
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[MappingDeclaration] @collection [[
+mappingId	MAPID-Table-NFSS
+target		:ias_shares/nfss{host} a :nfss ; :hasHostName {host}^^xsd:string ; :hasNFSPath {nfs}^^xsd:string ; :hasPassword {password}^^xsd:string ; :hasUsername {username}^^xsd:string . 
+source		select * from ias_shares.nfss
+
+mappingId	MAPID-NFS_Data
+target		:ias_shares/nfs_data{f_name} a :nfs_data ; :hasFileName {f_name}^^xsd:string ; :hasFileLocation {f_location}^^xsd:string ; :hasFileModificationTime {f_modification_time}^^xsd:string ; :hasFileType {f_type}^^xsd:string ; :hasGetMethod {get_methode}^^xsd:string ; :hasHostName {host}^^xsd:string ; :hasUsername {username}^^xsd:string ; :hasPassword {password}^^xsd:string . 
+source		SELECT * FROM ias_shares.nfs_data
+
+mappingId	MAPID-cloud_srcs
+target		:ias_shares/cloud_srcs{source} a :cloud_srcs ; :hasAccessKey {access_key}^^xsd:string ; :hasAccessID {access_key_id}^^xsd:string ; :hasRegion {region}^^xsd:string ; :hasSource {source}^^xsd:string ; :hasGetMethod {get_methode}^^xsd:string . 
+source		select * from ias_shares.cloud_srcs
+
+mappingId	MAPID-data_in_cloud
+target		:ias_shares/data_in_cloud{f_name} a :data_in_cloud ; :hasFileName {f_name}^^xsd:string ; :hasAccessKey {access_key}^^xsd:string ; :hasAccessID {access_key_id}^^xsd:string ; :hasFileLocation {f_location}^^xsd:string ; :hasFileType {f_type}^^xsd:string ; :hasGetMethod {get_methode}^^xsd:string ; :hasSource {source}^^xsd:string . 
+source		SELECT * FROM ias_shares.data_in_cloud
+
+mappingId	MAPID-data_in_db
+target		:ias_shares/data_in_db/{id} a :data_in_db ; :hasDataID {id}^^xsd:string ; :hasCollectionName {collection_name}^^xsd:string ; :hasCondition {condition}^^xsd:string ; :hasGateLength {gate_length}^^xsd:string ; :hasVoltageGateSource {voltage_gate_source}^^xsd:string ; :hasVoltageDrainSource {voltage_drain_source}^^xsd:string . 
+source		SELECT * FROM ias_shares.data_in_db
+]]
+

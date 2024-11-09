@@ -1,0 +1,227 @@
+@prefix : <http://www.semanticweb.org/owl/owlapi/turtle#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/owl/owlapi/turtle#> .
+
+<http://example.org/data-catalog> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasCloudData
+:hasCloudData rdf:type owl:ObjectProperty ;
+              rdfs:domain :cloud_srcs ;
+              rdfs:range :data_in_cloud .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasDatabase
+:hasDatabase rdf:type owl:ObjectProperty ;
+             rdfs:domain :db_connection_details ;
+             rdfs:range :data_in_db .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasNFSData
+:hasNFSData rdf:type owl:ObjectProperty ;
+            rdfs:domain :nfss ;
+            rdfs:range :nfs_data .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasAccessID
+:hasAccessID rdf:type owl:DatatypeProperty ;
+             rdfs:domain :cloud_srcs ,
+                         :data_in_cloud ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasAccessKey
+:hasAccessKey rdf:type owl:DatatypeProperty ;
+              rdfs:domain :cloud_srcs ,
+                          :data_in_cloud ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasCollectionName
+:hasCollectionName rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :data_in_db ,
+                               :db_connection_details ;
+                   rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasCondition
+:hasCondition rdf:type owl:DatatypeProperty ;
+              rdfs:domain :data_in_db ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasDataID
+:hasDataID rdf:type owl:DatatypeProperty ;
+           rdfs:domain :data_in_db ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasDatabaseName
+:hasDatabaseName rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :db_connection_details ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasDatabasePassword
+:hasDatabasePassword rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :db_connection_details ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasDatabasePort
+:hasDatabasePort rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :db_connection_details ;
+                 rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasDatabaseUsername
+:hasDatabaseUsername rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :db_connection_details ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasFileLocation
+:hasFileLocation rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :data_in_cloud ,
+                             :nfs_data ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasFileModificationTime
+:hasFileModificationTime rdf:type owl:DatatypeProperty ;
+                         rdfs:domain :nfs_data ;
+                         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasFileName
+:hasFileName rdf:type owl:DatatypeProperty ;
+             rdfs:domain :data_in_cloud ,
+                         :nfs_data ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasFileType
+:hasFileType rdf:type owl:DatatypeProperty ;
+             rdfs:domain :data_in_cloud ,
+                         :nfs_data ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasGateLength
+:hasGateLength rdf:type owl:DatatypeProperty ;
+               rdfs:domain :data_in_db ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasGetMethod
+:hasGetMethod rdf:type owl:DatatypeProperty ;
+              rdfs:domain :cloud_srcs ,
+                          :data_in_cloud ,
+                          :db_connection_details ,
+                          :nfs_data ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasHostName
+:hasHostName rdf:type owl:DatatypeProperty ;
+             rdfs:domain :db_connection_details ,
+                         :nfs_data ,
+                         :nfss ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasNFSPath
+:hasNFSPath rdf:type owl:DatatypeProperty ;
+            rdfs:domain :nfss ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasPassword
+:hasPassword rdf:type owl:DatatypeProperty ;
+             rdfs:domain :db_connection_details ,
+                         :nfs_data ,
+                         :nfss ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasRegion
+:hasRegion rdf:type owl:DatatypeProperty ;
+           rdfs:domain :cloud_srcs ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasSource
+:hasSource rdf:type owl:DatatypeProperty ;
+           rdfs:domain :cloud_srcs ,
+                       :data_in_cloud ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasUsername
+:hasUsername rdf:type owl:DatatypeProperty ;
+             rdfs:domain :db_connection_details ,
+                         :nfs_data ,
+                         :nfss ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasVoltageDrainSource
+:hasVoltageDrainSource rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :data_in_db ;
+                       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#hasVoltageGateSource
+:hasVoltageGateSource rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :data_in_db ;
+                      rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#cloud_srcs
+:cloud_srcs rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#data_in_cloud
+:data_in_cloud rdf:type owl:Class ;
+               rdfs:subClassOf :data_sources .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#data_in_db
+:data_in_db rdf:type owl:Class ;
+            rdfs:subClassOf :data_sources .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#data_sources
+:data_sources rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#db_connection_details
+:db_connection_details rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#nfs_data
+:nfs_data rdf:type owl:Class ;
+          rdfs:subClassOf :data_sources .
+
+
+###  http://www.semanticweb.org/owl/owlapi/turtle#nfss
+:nfss rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi

@@ -1,0 +1,8 @@
+flask
+SPARQLWrapper
+tabulate
+cassandra-driver
+paramiko
+pymongo
+boto3
+pandas

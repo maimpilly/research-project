@@ -1,0 +1,53 @@
+{
+    "all":{
+        "children":{
+            "activ_nodes":{
+                "hosts":{
+                    "archi_controll":{
+                        "ansible_host":"10.10.10.2",
+                        "ansible_user":"researchproject",
+                        "ansible_ssh_pass":"bigbang",
+                        "ansible_sudo_pass":"bigbang"
+        
+                    },
+                    "ANode1":{
+                        "ansible_host":"10.10.10.3",
+                        "ansible_user":"researchproject",
+                        "ansible_ssh_pass":"bigbang",
+                        "ansible_sudo_pass":"bigbang"
+        
+                    }
+                    
+                }
+            },
+
+            "cloud":{
+                "hosts":{
+                    "AWS_S3":{
+                        "aws_access_key":"",
+                        "aws_access_key_id":"",
+                        "region":"eu-central-1",
+                        "src":".amazonaws.com/"
+                    }
+
+
+                }
+            },
+
+            "passiv_nodes":{
+                "hosts":{
+                    "PNode":{
+                        "ansible_host":"10.10.10.4",
+                        "ansible_user":"researchproject",
+                        "ansible_ssh_pass":"bigbang",
+                        "ansible_sudo_pass":"bigbang"
+        
+                    }
+
+                }
+            }
+
+        }
+        
+    }
+}

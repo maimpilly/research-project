@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SPARQL Query Results</title>
+    <style>
+        /* Add your CSS styles here */
+        .json {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>SPARQL Query Results</h1>
+    </p>{{file_message}}</p>
+    <div class="json">
+        <pre>{{ results | tojson(indent=2) }}</pre>
+    </div>
+</body>
+</html>

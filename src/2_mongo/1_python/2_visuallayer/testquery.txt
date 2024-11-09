@@ -1,0 +1,28 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX : <http://www.semanticweb.org/owl/owlapi/turtle#>
+
+SELECT ?collectionName ?id ?condition ?gateLength ?voltageGateSource ?voltageDrainSource
+WHERE {
+  ?data :hasCondition ?condition .
+  ?data :hasCollectionName ?collectionName
+  ?data :hasDataID ?id .
+  ?data :hasGateLength ?gateLength
+  ?data :hasVoltageGateSource ?voltageGateSource
+  ?data :hasVoltageDrainSource ?voltageDrainSource
+  FILTER (?condition = 'intact')
+}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX : <http://www.semanticweb.org/owl/owlapi/turtle#>
+
+SELECT ?collectionName ?id ?condition ?gateLength ?voltageGateSource ?voltageDrainSource
+WHERE {
+  ?data :hasCondition ?condition .
+  ?data :hasCollectionName ?collectionName .
+  ?data :hasDataID ?id .
+  ?data :hasGateLength ?gateLength . 
+  ?data :hasVoltageGateSource ?voltageGateSource .
+  ?data :hasVoltageDrainSource ?voltageDrainSource .
+  FILTER (?condition = 'defect')
+}
+
+/usr/src/app/data

@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  # strock_ml_service:
+  #   container_name: stroke
+  #   build:
+  #     context: /home/researchproject/IAS_Project/microservice/microservices/strock_ml_service
+  #   volumes:
+  #   - /home/researchproject/microservice/microservices/strock_ml_service/app:/usr/src/app
+  #   - /home/researchproject/microservice/get_module:/usr/src/get_module
+
+
+  tf_ias:
+    container_name: stored_model
+    build:
+      context: /home/researchproject/IAS_Project/microservice/microservices/TF_IAS_service
+    volumes:
+    - /home/researchproject/IAS_Project/microservice/get_module:/usr/src/get_module
+    - /home/researchproject/IAS_Project/microservice/microservices/TF_IAS_service/app:/usr/src/app
+
+  #use_case:
+   # container_name: DUT_GaN_IMS
+    #build:
+     # context: /home/researchproject/IAS_Project/microservice/microservices/Use_Case
+   # volumes:
+    #- /home/researchproject/IAS_Project/microservice/get_module:/usr/src/get_module
+    #- /home/researchproject/IAS_Project/microservice/microservices/Use_Case/app:/usr/src/app
